@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Criar conta | MartialTech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/cadastro.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html"><span data-icon="award"></span>Artes Marciais &amp; Educação</a>
+    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false"></button>
+    <nav class="nav" aria-label="Principal">
+      <a href="../index.html#beneficios">Benefícios</a>
+      <!--<a href="../index.html#como-funciona">Como Funciona</a> -->
+      <a href="aulas.html">Aulas</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="desempenho.html">Desempenho</a>
+      <a href="admin.html" data-admin hidden>Admin</a>
+      <a class="btn" href="login.html">Entrar</a>
+      <a href="#" class="sair" data-logout hidden>Sair</a>
+    </nav>
+  </div>
+</header>
+
+<main class="signup">
+  <div class="container">
+    <div class="split">
+      <aside class="side">
+        <h1>Comece sua jornada</h1>
+        <p>Crie sua conta e passe a acompanhar foco, disciplina e rendimento escolar.</p>
+        <ul>
+          <li><span data-icon="play"></span><div><b>Acesso a todas as aulas</b><small>Videoaulas por modalidade e nível</small></div></li>
+          <li><span data-icon="zap"></span><div><b>Sistema gamificado</b><small>XP, medalhas e ranking</small></div></li>
+          <li><span data-icon="trend"></span><div><b>Acompanhamento de progresso</b><small>Veja sua evolução aula a aula</small></div></li>
+        </ul>
+      </aside>
+      <section class="panel">
+        <h2>Criar conta</h2>
+        <form id="form-cadastro" novalidate>
+          <label for="nome">Nome Completo<input id="nome" autocomplete="name" required></label>
+          <label for="email">Email<input id="email" type="email" autocomplete="email" required></label>
+          <label for="senha">Senha<input id="senha" type="password" autocomplete="new-password" placeholder="Mínimo de 8 caracteres" required></label>
+          <label for="senha2">Confirmar Senha<input id="senha2" type="password" autocomplete="new-password" required></label>
+          <p class="msg" id="msg" role="alert"></p>
+          <button class="btn block" type="submit">Criar conta</button>
+        </form>
+        <p class="alt">Já tem conta? <a href="login.html">Entrar</a></p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <a class="brand" href="../index.html"><span data-icon="award"></span>Artes Marciais &amp; Educação</a>
+    <p>© 2026 Todos os direitos reservados</p>
+  </div>
+</footer>
+<script src="../scripts/comum.js"></script>
+<script src="../scripts/cadastro.js"></script>
+</body>
+</html>

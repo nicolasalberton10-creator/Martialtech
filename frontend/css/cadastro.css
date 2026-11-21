@@ -1,0 +1,140 @@
+/* Cadastro: painel de vantagens à esquerda e formulário à direita. */
+.signup {
+  padding-block: clamp(2rem, 6vw, 4rem);
+  background: color-mix(in srgb, var(--secondary) 60%, transparent);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 800px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.side {
+  background: var(--primary);
+  color: #fff;
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.side h1 {
+  font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+  font-weight: 700;
+}
+
+.side > p {
+  color: #cbd5e1;
+}
+
+.side ul {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.side li {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+.side li > span {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+}
+
+.side li div {
+  display: grid;
+  min-width: 0;
+}
+
+.side small {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+.panel {
+  background: var(--card);
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.panel h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+input,
+select {
+  width: 100%;
+  font: 400 1rem var(--body);
+  padding: 0.7rem 0.85rem;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--fg);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+input[aria-invalid='true'] {
+  border-color: var(--accent);
+}
+
+.msg {
+  min-height: 1.3em;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+.msg.ok {
+  color: var(--good);
+  font-weight: 600;
+}
+
+.alt {
+  text-align: center;
+  margin-top: 1.2rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.alt a {
+  color: var(--accent);
+  font-weight: 600;
+}

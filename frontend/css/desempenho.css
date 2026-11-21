@@ -1,0 +1,133 @@
+/* Desempenho: gráfico antes/depois, métrica de melhora e benefícios cognitivos. */
+.perf {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .perf {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.chart-card,
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  min-width: 0;
+}
+
+.legend {
+  display: flex;
+  gap: 1.4rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.legend i {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  margin-right: 0.4rem;
+  vertical-align: -1px;
+}
+
+.legend .before {
+  background: var(--muted);
+  opacity: 0.55;
+}
+
+.legend .after {
+  background: var(--accent);
+}
+
+.scroll {
+  overflow-x: auto;
+}
+
+#chart {
+  display: block;
+  width: 100%;
+  min-width: 440px;
+  height: auto;
+}
+
+.stat-card {
+  display: grid;
+  gap: 0.4rem;
+  justify-items: start;
+}
+
+.stat-ic {
+  color: var(--accent);
+}
+
+.stat-ic .ic {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.big {
+  font: 700 clamp(2.8rem, 6vw, 3.6rem)/1 var(--head);
+  color: var(--good);
+}
+
+.stat-label {
+  font-weight: 600;
+}
+
+.sim {
+  margin-top: 0.9rem;
+  border: 1.5px dashed var(--accent);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.sim b {
+  color: var(--fg);
+}
+
+.cog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  min-width: 0;
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.card p {
+  color: var(--muted);
+}
+
+.card-ic {
+  color: var(--accent);
+}
+
+.card-ic .ic {
+  width: 2.6rem;
+  height: 2.6rem;
+}

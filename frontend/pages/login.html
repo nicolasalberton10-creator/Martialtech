@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entrar | MartialTech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html"><span data-icon="award"></span>Artes Marciais &amp; Educação</a>
+    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false"></button>
+    <nav class="nav" aria-label="Principal">
+      <a href="../index.html#beneficios">Benefícios</a>
+      <!--<a href="../index.html#como-funciona">Como Funciona</a> -->
+      <a href="aulas.html">Aulas</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="desempenho.html">Desempenho</a>
+      <a href="admin.html" data-admin hidden>Admin</a>
+      <a class="btn" href="login.html" aria-current="page">Entrar</a>
+      <a href="#" class="sair" data-logout hidden>Sair</a>
+    </nav>
+  </div>
+</header>
+
+<main class="auth">
+  <div class="container">
+    <div class="auth-card">
+      <h1>Entrar</h1>
+      <p class="sub">Acesse suas aulas e acompanhe seu progresso.</p>
+      <form id="form-login" novalidate>
+        <label for="email">Email
+          <input id="email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required>
+        </label>
+        <label for="senha">Senha
+          <input id="senha" type="password" autocomplete="current-password" required>
+        </label>
+        <p class="msg" id="msg" role="alert"></p>
+        <button class="btn block" type="submit">Entrar</button>
+      </form>
+      <p class="alt">Ainda não tem conta? <a href="cadastro.html">Criar conta</a></p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <a class="brand" href="../index.html"><span data-icon="award"></span>Artes Marciais &amp; Educação</a>
+    <p>© 2026 Todos os direitos reservados</p>
+  </div>
+</footer>
+<script src="../scripts/comum.js"></script>
+<script src="../scripts/login.js"></script>
+</body>
+</html>

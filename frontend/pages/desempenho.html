@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Desempenho Acadêmico | MartialTech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/desempenho.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html"><span data-icon="award"></span>Artes Marciais &amp; Educação</a>
+    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false"></button>
+    <nav class="nav" aria-label="Principal">
+      <a href="../index.html#beneficios">Benefícios</a>
+      <!--<a href="../index.html#como-funciona">Como Funciona</a> -->
+      <a href="aulas.html">Aulas</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="desempenho.html" aria-current="page">Desempenho</a>
+      <a href="admin.html" data-admin hidden>Admin</a>
+      <a class="btn" href="login.html" data-auth>Entrar</a>
+      <a href="#" class="sair" data-logout hidden>Sair</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Impacto no Desempenho Acadêmico</h1>
+      <p>Médias escolares antes e depois da prática das artes marciais, por disciplina da Educação Básica.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="perf">
+        <div class="chart-card">
+          <div class="legend"><span><i class="before"></i>Antes</span><span><i class="after"></i>Depois</span></div>
+          <div class="scroll"><svg id="chart" viewBox="0 0 560 300" role="img" aria-label="Gráfico de barras com as médias antes e depois, por disciplina"></svg></div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-ic" data-icon="trend"></span>
+          <p class="big" id="avg">+23%</p>
+          <p class="stat-label">de melhora média nas notas</p>
+          <div class="sim"><b>Dados simulados.</b> Os valores do gráfico ilustram como a plataforma tabula resultados, com base nos impactos descritos na literatura científica estudada.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Benefícios Cognitivos</h2>
+        <p>Estímulos que as lutas geram na capacidade mental dos alunos</p>
+      </div>
+      <div class="cog">
+        <article class="card"><span class="card-ic" data-icon="brain"></span><h3>Atenção</h3><p>Cada movimento exige atenção plena, o que treina a capacidade de manter o foco por mais tempo.</p></article>
+        <article class="card"><span class="card-ic" data-icon="target"></span><h3>Tomada de decisão</h3><p>Decisões rápidas durante o treino estimulam o pensamento claro mesmo sob pressão.</p></article>
+        <article class="card"><span class="card-ic" data-icon="shield"></span><h3>Resiliência</h3><p>Lidar com a frustração sem se abalar é um aprendizado que acompanha o aluno no dia a dia.</p></article>
+        <article class="card"><span class="card-ic" data-icon="heart"></span><h3>Controle emocional</h3><p>A prática regular ajuda a reduzir estresse e ansiedade e fortalece a autoestima.</p></article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <a class="brand" href="../index.html"><span data-icon="award"></span>Artes Marciais &amp; Educação</a>
+    <p>© 2026 Todos os direitos reservados</p>
+  </div>
+</footer>
+<script src="../scripts/comum.js"></script>
+<script src="../scripts/desempenho.js"></script>
+</body>
+</html>

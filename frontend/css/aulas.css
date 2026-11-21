@@ -1,0 +1,209 @@
+/* Aulas: filtros, cards de videoaula e barra de XP. */
+.hero-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.xp {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.badge {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  flex: none;
+}
+
+.xp-info {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.xp-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.xp-top span {
+  color: var(--muted);
+}
+
+.bar {
+  height: 10px;
+  border-radius: 99px;
+  background: var(--secondary);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  transition: width 0.4s;
+}
+
+.filters {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.chip {
+  border: 1.5px solid var(--border);
+  background: var(--card);
+  color: var(--fg);
+  font: 500 0.95rem var(--body);
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.5rem;
+}
+
+.aula {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+  transition: box-shadow 0.2s;
+}
+
+.aula:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.thumb {
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0.9rem 1.1rem;
+  color: #fff;
+  font: 600 0.78rem var(--body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.thumb.judo {
+  background: linear-gradient(135deg, #1e3a8a, #3b5bdb);
+}
+
+.thumb.jj {
+  background: linear-gradient(135deg, #1f2937, #4b5563);
+}
+
+.thumb.mt {
+  background: linear-gradient(135deg, #7f1d1d, #dc2626);
+}
+
+.thumb .ic {
+  width: 2rem;
+  height: 2rem;
+}
+
+.aula-body {
+  padding: 1.1rem 1.2rem 1.3rem;
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
+}
+
+.aula h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.meta .ic {
+  width: 1em;
+  height: 1em;
+}
+
+.lvl {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.pct {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+.aula .bar i {
+  background: var(--good);
+}
+
+.aula .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.92rem;
+}
+
+.aula .btn.done {
+  background: var(--secondary);
+  color: var(--muted);
+  cursor: default;
+}
+
+.note {
+  margin-top: 1.5rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+}

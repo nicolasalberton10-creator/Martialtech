@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Painel do Administrador | MartialTech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html"><span data-icon="award"></span>Artes Marciais &amp; Educação</a>
+    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false"></button>
+    <nav class="nav" aria-label="Principal">
+      <a href="../index.html#beneficios">Benefícios</a>
+      <!--<a href="../index.html#como-funciona">Como Funciona</a> -->
+      <a href="aulas.html">Aulas</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="desempenho.html">Desempenho</a>
+      <a href="admin.html" data-admin hidden aria-current="page">Admin</a>
+      <a class="btn" href="login.html" data-auth>Entrar</a>
+      <a href="#" class="sair" data-logout hidden>Sair</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Painel do Administrador</h1>
+      <p>Gerencie as aulas e as perguntas do quiz.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="filters" role="group" aria-label="Escolher área">
+        <button class="chip" id="aba-aulas" aria-pressed="true">Aulas</button>
+        <button class="chip" id="aba-quiz" aria-pressed="false">Quiz</button>
+      </div>
+
+      <!-- ===== AULAS ===== -->
+      <div id="painel-aulas">
+        <form class="box" id="form-aula">
+          <h2 id="titulo-form-aula">Nova aula</h2>
+          <div class="campos">
+            <label>Arte marcial<select id="aula-arte"></select></label>
+            <label>Título<input id="aula-titulo" required></label>
+            <label>Professor<input id="aula-professor" required></label>
+            <label>Duração (minutos)<input id="aula-duracao" type="number" min="1" required></label>
+            <label>Nível
+              <select id="aula-nivel"><option>Iniciante</option><option>Intermediário</option><option>Avançado</option></select>
+            </label>
+          </div>
+          <div class="acoes">
+            <button class="btn" type="submit">Salvar aula</button>
+            <button class="btn outline" type="button" id="cancelar-aula" hidden>Cancelar edição</button>
+          </div>
+        </form>
+
+        <div class="lista" id="lista-aulas"></div>
+      </div>
+
+      <!-- ===== QUIZ ===== -->
+      <div id="painel-quiz" hidden>
+        <form class="box" id="form-pergunta">
+          <h2>Nova pergunta</h2>
+          <div class="campos">
+            <label>Arte marcial<select id="quiz-arte"></select></label>
+            <label class="largo">Pergunta<input id="quiz-enunciado" required></label>
+            <label class="largo">Explicação da resposta<input id="quiz-explicacao"></label>
+          </div>
+          <p class="dica">Escreva as alternativas e marque a bolinha da que está certa.</p>
+          <div class="alts" id="quiz-alts"></div>
+          <div class="acoes">
+            <button class="btn" type="submit">Salvar pergunta</button>
+          </div>
+        </form>
+
+        <h2 class="sub" id="quiz-titulo-lista">Perguntas</h2>
+        <div class="lista" id="lista-perguntas"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <a class="brand" href="../index.html"><span data-icon="award"></span>Artes Marciais &amp; Educação</a>
+    <p>© 2026 Todos os direitos reservados</p>
+  </div>
+</footer>
+<script src="../scripts/comum.js"></script>
+<script src="../scripts/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Minhas Aulas | MartialTech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/aulas.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html"><span data-icon="award"></span>Artes Marciais &amp; Educação</a>
+    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false"></button>
+    <nav class="nav" aria-label="Principal">
+      <a href="../index.html#beneficios">Benefícios</a>
+      <!--<a href="../index.html#como-funciona">Como Funciona</a> -->
+      <a href="aulas.html" aria-current="page">Aulas</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="desempenho.html">Desempenho</a>
+      <a href="admin.html" data-admin hidden>Admin</a>
+      <a class="btn" href="login.html" data-auth>Entrar</a>
+      <a href="#" class="sair" data-logout hidden>Sair</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container hero-row">
+      <div>
+        <h1>Minhas Aulas</h1>
+        <p>Explore e aprenda com nossas aulas de artes marciais.</p>
+      </div>
+      <a class="btn lg" href="desempenho.html">Ir para o Dashboard <span data-icon="chevron"></span></a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="xp" aria-label="Seu nível">
+        <span class="badge" data-icon="zap"></span>
+        <div class="xp-info">
+          <div class="xp-top"><b id="nivel">Faixa branca</b><span id="xp-txt">0 XP</span></div>
+          <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="xp-bar"><i id="xp-fill"></i></div>
+        </div>
+      </div>
+
+      <div class="filters" role="group" aria-label="Filtrar por modalidade">
+        <button class="chip" aria-pressed="true" data-f="todas">Todas</button>
+        <button class="chip" aria-pressed="false" data-f="judo">Judô</button>
+        <button class="chip" aria-pressed="false" data-f="jj">Jiu-jitsu</button>
+        <button class="chip" aria-pressed="false" data-f="mt">Muay Thai</button>
+      </div>
+
+      <div class="cards" id="cards" aria-live="polite"></div>
+      <p class="note">Professores, durações e percentuais são exemplos que demonstram o funcionamento da tela.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <a class="brand" href="../index.html"><span data-icon="award"></span>Artes Marciais &amp; Educação</a>
+    <p>© 2026 Todos os direitos reservados</p>
+  </div>
+</footer>
+<script src="../scripts/comum.js"></script>
+<script src="../scripts/aulas.js"></script>
+</body>
+</html>

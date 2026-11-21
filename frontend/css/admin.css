@@ -1,0 +1,159 @@
+/* Painel do administrador */
+
+.filters {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.chip {
+  border: 1.5px solid var(--border);
+  background: var(--card);
+  color: var(--fg);
+  font: 500 0.95rem var(--body);
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* caixa do formulário */
+.box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.box h2,
+.sub {
+  font: 600 1.2rem var(--head);
+}
+
+.sub {
+  margin-bottom: 1rem;
+}
+
+.campos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.campos .largo {
+  grid-column: 1 / -1;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+input,
+select {
+  width: 100%;
+  font: 400 1rem var(--body);
+  padding: 0.7rem 0.85rem;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--fg);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.dica {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* alternativas: bolinha + texto */
+.alts {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.alt-linha {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.alt-linha input[type='radio'] {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: var(--accent);
+}
+
+.acoes {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+/* lista de aulas / perguntas */
+.lista {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.item small {
+  display: block;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+.item ul {
+  margin: 0.5rem 0 0 1.1rem;
+  font-size: 0.92rem;
+}
+
+.item li.certa {
+  color: var(--good);
+  font-weight: 600;
+}
+
+.item .botoes {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn.pequeno {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+.btn.perigo {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: transparent;
+}
