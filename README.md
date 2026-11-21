@@ -34,15 +34,14 @@ A cada **100 XP** o aluno sobe de faixa (7 faixas no total).
 
 ## Tecnologias
 
+| Camada | Tecnologias |
+|---|---|
+| Frontend | HTML, CSS e JavaScript puro (uma página, um CSS e um script por tela) |
+| Backend | Node.js, Express 5, CORS, bcryptjs |
+| Banco de dados | MySQL (driver `mysql2`) |
+| Apoio | Visual Studio Code, Live Server e MySQL Workbench |
 
-|    Camada      |                               Tecnologias                             |
-|----------------|-----------------------------------------------------------------------|
-| Frontend       | HTML, CSS e JavaScript puro (uma página, um CSS e um script por tela) |
-| Backend        | Node.js, Express 5, CORS, bcryptjs                                    |
-| Banco de dados | MySQL (driver `mysql2`)                                               |
-| Apoio          | Visual Studio Code, Live Server e MySQL Workbench                     |
-
----              
+---
 
 ## Estrutura do projeto
 
@@ -94,9 +93,100 @@ Instale antes de começar:
 - [MySQL Server](https://dev.mysql.com/downloads/mysql/) e, se quiser, o [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
 - [Visual Studio Code](https://code.visualstudio.com/) com a extensão **Live Server**
 
-### 1. Criar o banco de dados
+### 1. Instalar e usar o MySQL
 
-No MySQL Workbench (ou pelo terminal), execute os scripts na ordem:
+**Instalação (Windows)**
+
+1. Baixe o **MySQL Installer** em https://dev.mysql.com/downloads/installer/ e escolha a opção *Developer Default* (instala o MySQL Server e o Workbench).
+2. Durante a instalação, defina uma **senha para o usuário `root`** e anote. Ela será usada no passo 2 (arquivo `database.js`).
+3. Deixe o servidor MySQL rodando (ele inicia como serviço do Windows).
+
+**Instalar o MySQL Workbench**
+
+O MySQL Workbench é o programa com interface gráfica para ver e editar o banco. Se você usou a opção *Developer Default* acima, ele já foi instalado. Caso contrário:
+
+- **Windows:** baixe em https://dev.mysql.com/downloads/workbench/, escolha *Windows (x86, 64-bit), MSI Installer*, abra o arquivo e siga o assistente (Next, Next, Install). O site pode pedir login; clique em **No thanks, just start my download**.
+- **macOS:** baixe o arquivo `.dmg` na mesma página, abra e arraste o ícone do Workbench para a pasta **Aplicativos**.
+- **Linux (Ubuntu/Debian):** `sudo apt install mysql-workbench-community`, ou baixe o `.deb` na página de downloads.
+
+O Workbench só é a ferramenta de acesso. Ele **não substitui** o MySQL Server, que precisa estar instalado e em execução.
+
+**Conectar pelo MySQL Workbench**
+
+1. Abra o MySQL Workbench. Na tela inicial, clique na conexão **Local instance MySQL** (host `127.0.0.1`, porta `3306`, usuário `root`).
+2. Digite a senha do `root`. Quando a conexão abrir, você vê o editor de SQL.
+
+**Criar o banco do MartialTech pelo Workbench**
+
+1. Vá em **File → Open SQL Script** e escolha `backend/db/banco_martialtech.sql`.
+2. Clique no ícone do **raio** (Execute) para rodar o script inteiro. Ele cria o banco `martialtech`, as 10 tabelas e os dados iniciais.
+3. Repita com `backend/db/admin.sql` para criar o administrador.
+4. No painel **Schemas** (à esquerda), clique em atualizar (ícone de setas circulares). O banco `martialtech` aparece na lista.
+
+**Conferir se deu certo**
+
+Abra uma nova aba de consulta (**Ctrl+T**) e rode os comandos abaixo, um de cada vez:
+
+```sql
+USE martialtech;
+
+SHOW TABLES;                                   -- lista as 10 tabelas
+SELECT id, nome, email, tipo FROM usuarios;    -- usuários cadastrados
+SELECT id, titulo, nivel FROM aulas;           -- aulas disponíveis
+SELECT COUNT(*) AS total FROM quiz_perguntas;  -- quantas perguntas existem
+```
+
+**Consultas úteis durante os testes**
+
+```sql
+-- XP vindo das aulas (5 XP a cada 10% de progresso) de um usuário (troque o 1 pelo id)
+SELECT COALESCE(SUM(FLOOR(percentual / 10) * 5), 0) AS xp_aulas
+FROM progresso_aulas WHERE usuario_id = 1;
+
+-- XP vindo do quiz de um usuário
+SELECT COALESCE(SUM(xp), 0) AS xp_quiz
+FROM quiz_acertos WHERE usuario_id = 1;
+-- XP total = xp_aulas + xp_quiz. A faixa sobe a cada 100 XP.
+
+-- Excluir um usuário de teste (apaga também o progresso e os acertos dele)
+DELETE FROM usuarios WHERE email = 'teste@teste.com';
+
+-- Zerar o XP de um usuário para refazer os testes
+DELETE FROM progresso_aulas WHERE usuario_id = 1;
+DELETE FROM quiz_acertos WHERE usuario_id = 1;
+```
+
+> Se o Workbench avisar *Safe Update Mode* ao rodar um `DELETE`, inclua uma condição `WHERE` com a coluna `id` ou desligue a opção em **Edit → Preferences → SQL Editor**.
+
+**Senha dos usuários no banco**
+
+A coluna `senha_hash` guarda um **hash bcrypt** (começa com `$2a$10$`), nunca a senha pura. Ele não pode ser "descriptografado": o login compara a senha digitada com o hash.
+
+**Como usar o MySQL Workbench (resumo)**
+
+| Onde | O que é | Para que serve |
+|---|---|---|
+| **Navigator → Schemas** (esquerda) | Lista de bancos | Clique na seta do `martialtech`, depois em **Tables**, para ver as tabelas |
+| Editor de consultas (centro) | Área para escrever SQL | Digite ou cole os comandos aqui |
+| Ícone do **raio** | Executa tudo | Roda o script inteiro |
+| Raio com **cursor** | Executa só uma linha | Roda apenas o comando onde o cursor está |
+| **Result Grid** (embaixo) | Tabela de resultados | Mostra o que o `SELECT` devolveu |
+| **Output** (embaixo) | Registro de execução | Mostra erros e quantas linhas foram afetadas |
+
+Atalhos úteis:
+
+- **Ver os dados de uma tabela com um clique:** passe o mouse sobre a tabela em Schemas e clique no ícone de tabela (*Select Rows*).
+- **Nova aba de consulta:** Ctrl+T.
+- **Executar a linha atual:** Ctrl+Enter. **Executar tudo:** Ctrl+Shift+Enter.
+- **Ver a estrutura de uma tabela:** clique com o botão direito na tabela, depois **Table Inspector**.
+- **Editar um valor direto na grade:** abra a tabela com *Select Rows*, edite a célula e clique em **Apply**.
+- **Atualizar a lista de bancos e tabelas:** ícone de setas circulares ao lado de **SCHEMAS**.
+
+Dica: antes de rodar `UPDATE` ou `DELETE`, rode o mesmo comando como `SELECT` com o mesmo `WHERE`, para conferir quais linhas serão afetadas.
+
+### 1.1. Criar o banco pelo terminal (alternativa)
+
+Se preferir não usar o Workbench, execute os scripts na ordem:
 
 1. `backend/db/banco_martialtech.sql` (cria o banco `martialtech`, as tabelas e os dados iniciais)
 2. `backend/db/admin.sql` (cria o usuário administrador)
@@ -147,17 +237,17 @@ Com o backend rodando (`npm start`) e o frontend aberto no Live Server, siga o r
 
 ### Roteiro de teste do aluno
 
-| ## | O que fazer | Resultado esperado |
+| # | O que fazer | Resultado esperado |
 |---|---|---|
-| 01 | Abrir a página inicial e clicar nos cards de benefícios | Abre um pop-up com a explicação e a fonte |
-| 02 | Em **Criar conta**, usar uma senha com menos de 8 caracteres | O site recusa e avisa |
-| 03 | Criar uma conta com dados válidos | Conta criada; o site leva ao login |
-| 04 | Fazer login com a conta criada | Entra e o menu mostra **Sair** |
-| 05 | Tentar entrar com a senha errada | Mostra erro e não entra |
-| 06 | Em **Aulas**, clicar nos filtros Judô, Jiu-jitsu e Muay Thai | Só aparecem as aulas da modalidade |
-| 07 | Avançar o progresso de uma aula | O percentual sobe e o XP aumenta (5 XP a cada 10%) |
-| 08 | Em **Quiz**, escolher uma modalidade e acertar uma pergunta | A resposta fica verde e ganha 10 XP |
-| 09 | Refazer o quiz e acertar a mesma pergunta | Não ganha XP de novo |
+| 1 | Abrir a página inicial e clicar nos cards de benefícios | Abre um pop-up com a explicação e a fonte |
+| 2 | Em **Criar conta**, usar uma senha com menos de 8 caracteres | O site recusa e avisa |
+| 3 | Criar uma conta com dados válidos | Conta criada; o site leva ao login |
+| 4 | Fazer login com a conta criada | Entra e o menu mostra **Sair** |
+| 5 | Tentar entrar com a senha errada | Mostra erro e não entra |
+| 6 | Em **Aulas**, clicar nos filtros Judô, Jiu-jitsu e Muay Thai | Só aparecem as aulas da modalidade |
+| 7 | Avançar o progresso de uma aula | O percentual sobe e o XP aumenta (5 XP a cada 10%) |
+| 8 | Em **Quiz**, escolher uma modalidade e acertar uma pergunta | A resposta fica verde e ganha 10 XP |
+| 9 | Refazer o quiz e acertar a mesma pergunta | Não ganha XP de novo |
 | 10 | Chegar a 100 XP | Sobe de faixa |
 | 11 | Abrir **Desempenho** | Mostra o gráfico (dados simulados) |
 
@@ -209,29 +299,29 @@ Base: `http://localhost:3000`
 
 ### Públicas
 
-| Método |           Rota         |                      O que faz                     |
-|--------|------------------------|----------------------------------------------------|
-| POST   | `/cadastro`            | Cria um usuário (senha com hash bcrypt)            |
-| POST   | `/login`               | Confere e-mail e senha                             |
-| GET    | `/xp/:usuario`         | XP e faixa do usuário                              |
-| GET    | `/artes`               | Lista as modalidades                               |
-| GET    | `/aulas`               | Lista as aulas, com o progresso do usuário         |
-| POST   | `/aulas/:id/progresso` | Registra o progresso da aula e concede XP          |
-| GET    | `/quiz`                | Lista os quizzes por modalidade                    |
-| GET    | `/quiz/:slug`          | Perguntas de uma modalidade (`judo`, `jj`, `mt`)   |
-| POST   | `/responder`           | Confere a resposta e concede XP no primeiro acerto |
-| GET    | `/desempenho`          | Dados (simulados) do gráfico de desempenho         |
+| Método | Rota | O que faz |
+|---|---|---|
+| POST | `/cadastro` | Cria um usuário (senha com hash bcrypt) |
+| POST | `/login` | Confere e-mail e senha |
+| GET | `/xp/:usuario` | XP e faixa do usuário |
+| GET | `/artes` | Lista as modalidades |
+| GET | `/aulas` | Lista as aulas, com o progresso do usuário |
+| POST | `/aulas/:id/progresso` | Registra o progresso da aula e concede XP |
+| GET | `/quiz` | Lista os quizzes por modalidade |
+| GET | `/quiz/:slug` | Perguntas de uma modalidade (`judo`, `jj`, `mt`) |
+| POST | `/responder` | Confere a resposta e concede XP no primeiro acerto |
+| GET | `/desempenho` | Dados (simulados) do gráfico de desempenho |
 
 ### Administrador
 
-| Método |         Rota        |               O que faz              |
-|--------|---------------------|--------------------------------------|
-| POST   | `/admin/aulas`      | Cadastra uma aula                    |
-| PUT    | `/admin/aulas/:id`  | Edita uma aula                       |
-| DELETE | `/admin/aulas/:id`  | Exclui uma aula                      |
-| GET    | `/admin/quiz/:slug` | Lista as perguntas de uma modalidade |
-| POST   | `/admin/quiz`       | Cadastra uma pergunta                |
-| DELETE | `/admin/quiz/:id`   | Exclui uma pergunta                  |
+| Método | Rota | O que faz |
+|---|---|---|
+| POST | `/admin/aulas` | Cadastra uma aula |
+| PUT | `/admin/aulas/:id` | Edita uma aula |
+| DELETE | `/admin/aulas/:id` | Exclui uma aula |
+| GET | `/admin/quiz/:slug` | Lista as perguntas de uma modalidade |
+| POST | `/admin/quiz` | Cadastra uma pergunta |
+| DELETE | `/admin/quiz/:id` | Exclui uma pergunta |
 
 ---
 
@@ -239,18 +329,18 @@ Base: `http://localhost:3000`
 
 10 tabelas:
 
-|        Tabela        |                  Função                       |
-|----------------------|-----------------------------------------------|
-| `usuarios`           | Contas (nome, e-mail, hash da senha, tipo)    |
-| `artes_marciais`     | Modalidades                                   |
-| `aulas`              | Videoaulas de cada modalidade                 |
-| `progresso_aulas`    | Percentual concluído de cada aula por usuário |
-| `quiz_perguntas`     | Perguntas de cada modalidade                  |
-| `quiz_alternativas`  | Alternativas de cada pergunta                 |
-| `quiz_respostas`     | Histórico de respostas                        |
-| `quiz_acertos`       | Primeiro acerto de cada pergunta (base do XP) |
-| `beneficios`         | Benefícios das artes marciais, com a fonte    |
-| `desempenho_escolar` | Médias simuladas antes e depois               |
+| Tabela | Função |
+|---|---|
+| `usuarios` | Contas (nome, e-mail, hash da senha, tipo) |
+| `artes_marciais` | Modalidades |
+| `aulas` | Videoaulas de cada modalidade |
+| `progresso_aulas` | Percentual concluído de cada aula por usuário |
+| `quiz_perguntas` | Perguntas de cada modalidade |
+| `quiz_alternativas` | Alternativas de cada pergunta |
+| `quiz_respostas` | Histórico de respostas |
+| `quiz_acertos` | Primeiro acerto de cada pergunta (base do XP) |
+| `beneficios` | Benefícios das artes marciais, com a fonte |
+| `desempenho_escolar` | Médias simuladas antes e depois |
 
 ---
 
